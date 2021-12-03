@@ -1,5 +1,6 @@
 import { By, Builder, Capabilities, until, WebDriver, WebElement } from "selenium-webdriver";
 const chromedriver = require("chromedriver");
+const driver = new Builder().withCapabilities(Capabilities.chrome()).build()
 
 export class BasePage {
     driver: WebDriver;
@@ -90,7 +91,28 @@ export class BasePage {
         await this.driver.wait(until.elementIsEnabled(element));
         return element.getText();
     }
-
+    /**
+     * This function 
+     * @returns an array of window handles.
+     */
+    async getAllWindowHandles(): Promise<Array<string>> {
+        return this.driver.getAllWindowHandles();
+    }
+    /**
+     * This function
+     * @returns the url of the current page
+     */
+    async getCurrentUrl(): Promise<string> {
+        return this.driver.getCurrentUrl();
+    }
+    /**
+     * This function retrieves an array of window handles
+     * @returns switches windows
+     */
+    async changeWindows(): Promise<void> {
+    let windows= await this.driver.getAllWindowHandles();
+    return await this.driver.switchTo().window(windows[windows.length - 1]);
+    }
     /**
      * selects a drop down list option from a list of options based on the text of that option
      * @param {By} elementBy - the locator of the list of drop down list options

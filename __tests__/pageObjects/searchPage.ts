@@ -5,12 +5,12 @@ import {
   import { BasePage } from "./basePage";
 
   export class searchPage extends BasePage {
-      //locators
+      //search bar and submit button locators from search page
       searchBar: By = By.xpath("//div[@class='search__wrapper']/input[@placeholder='Search...']");
       searchSubmitBtn: By = By.xpath("//button[@class='search__button']");
+      //search page verifiers
       searchHeader: By = By.xpath("//div[@class='one-whole column']/h1")
       noResultsHeader: By = By.xpath("//div[@class='center']/h3");
-      returnToSearchBreadcrumb: By = By.xpath("//a[@href='/search']/span");
 
       constructor() {
         super("https://theprobar.com/search");
