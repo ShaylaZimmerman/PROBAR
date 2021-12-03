@@ -8,6 +8,8 @@ import {
       //locators
       searchBar: By = By.xpath("//div[@class='search__wrapper']/input[@placeholder='Search...']");
       searchSubmitBtn: By = By.xpath("//button[@class='search__button']");
+      searchHeader: By = By.xpath("//div[@class='one-whole column']/h1")
+      noResultsHeader: By = By.xpath("//div[@class='center']/h3");
       returnToSearchBreadcrumb: By = By.xpath("//a[@href='/search']/span");
 
       constructor() {
@@ -19,7 +21,10 @@ import {
     async clickSearchSubmitBtn() {
         await this.click(this.searchSubmitBtn);
     }
-    async clickReturnToSearch() {
-        await this.click(this.returnToSearchBreadcrumb);
+    async getSearchHeader() : Promise<string> {
+        return await this.getText(this.searchHeader);
+    }
+    async getNoResultsHeader() : Promise<string> {
+        return await this.getText(this.noResultsHeader);
     }
   }
