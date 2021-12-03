@@ -91,15 +91,24 @@ export class BasePage {
         await this.driver.wait(until.elementIsEnabled(element));
         return element.getText();
     }
+    /**
+     * This function 
+     * @returns an array of window handles.
+     */
     async getAllWindowHandles(): Promise<Array<string>> {
         return this.driver.getAllWindowHandles();
     }
-    async getWindowHandle(): Promise<string> {
-        return this.driver.getWindowHandle();
-    }
+    /**
+     * This function
+     * @returns the url of the current page
+     */
     async getCurrentUrl(): Promise<string> {
         return this.driver.getCurrentUrl();
     }
+    /**
+     * This function retrieves an array of window handles
+     * @returns switches windows
+     */
     async changeWindows(): Promise<void> {
     let windows= await this.driver.getAllWindowHandles();
     return await this.driver.switchTo().window(windows[windows.length - 1]);
